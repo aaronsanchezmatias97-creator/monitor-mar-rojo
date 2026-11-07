@@ -1,0 +1,27 @@
+name: Recoger pendientes
+
+on:
+  schedule:
+    - cron: "17 5 * * *"   # cada día a las 05:17 UTC
+  workflow_dispatch: {}     # permite lanzarlo a mano desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  recoger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Ejecutar el recolector
+        run: python scripts/recolectar.py
+      - name: Guardar cambios
+        run: |
+          git config user.name "recolector-automatico"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/pendientes.json
+          git diff --cached --quiet || git commit -m "Pendientes actualizados $(date -u +%F)"
+          git push
