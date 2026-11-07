@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitor del Mar Rojo</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{--bg:#f6f5f2;--panel:#fff;--ink:#1d2433;--muted:#5d6577;--line:#e2e0da;--accent:#1f3864;
+--ok:#2e7d4f;--exa:#c77d12;--nv:#6b7280;--fal:#b3261e;--warn-bg:#fff4d6;--warn-ink:#6b4a00;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--panel:#1b1f29;--ink:#e7e9ee;--muted:#a0a7b6;--line:#2c3240;--accent:#8fb0e8;--warn-bg:#3a2f12;--warn-ink:#f4d58d;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:20px 16px 8px;max-width:1200px;margin:0 auto}
+h1{margin:0;font-size:24px}
+.sub{color:var(--muted);margin:4px 0 0}
+.demo{background:var(--warn-bg);color:var(--warn-ink);padding:10px 16px;text-align:center;font-weight:600}
+nav{max-width:1200px;margin:12px auto 0;padding:0 16px;display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit}
+nav button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav a{margin-left:auto;align-self:center;color:var(--accent)}
+main{max-width:1200px;margin:0 auto;padding:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.kpi b{display:block;font-size:26px}
+.kpi span{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+#mapa{height:460px;border-radius:12px;border:1px solid var(--line)}
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+select,input{font:inherit;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.lista{max-height:460px;overflow:auto}
+.item{padding:10px;border-bottom:1px solid var(--line);cursor:pointer}
+.item:hover{background:rgba(127,127,127,.08)}
+.chip{display:inline-block;padding:2px 8px;border-radius:999px;color:#fff;font-size:12px;font-weight:600}
+.confirmado{background:var(--ok)}.exagerado{background:var(--exa)}.no_verificable{background:var(--nv)}.falso{background:var(--fal)}
+.ficha h3{margin:0 0 6px}
+.ar{direction:rtl;font-size:18px;background:rgba(127,127,127,.08);padding:8px 10px;border-radius:8px;margin:6px 0}
+.tr{color:var(--muted);font-style:italic;margin:0 0 8px}
+table{border-collapse:collapse;width:100%}
+td,th{border-bottom:1px solid var(--line);padding:6px;text-align:left;font-size:14px}
+.barras .fila{display:flex;align-items:center;gap:8px;margin:6px 0}
+.barras .et{width:120px;font-size:13px}
+.barras .bar{height:16px;border-radius:4px}
+.barras .n{font-size:13px;color:var(--muted)}
+.oculto{display:none}
+.nivel{font-size:28px;font-weight:700;margin:8px 0}
+.bajo{color:var(--ok)}.medio{color:var(--exa)}.alto{color:var(--fal)}
+.form label{display:block;margin:10px 0 4px;font-weight:600;font-size:14px}
+.form select,.form input,.form textarea{width:100%}
+textarea{font:13px/1.4 ui-monospace,Menlo,monospace;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);min-height:160px}
+.btn{background:var(--accent);color:#fff;border:0;padding:9px 14px;border-radius:8px;cursor:pointer;font:inherit;margin-top:10px}
+.nota{color:var(--muted);font-size:13px}
+.rot{pointer-events:none;font-family:system-ui,sans-serif;background:none;border:0}
+.rot span{display:inline-block;white-space:nowrap;transform:translate(-50%,-50%)}
+.rot.pais{font-size:12px;font-weight:700;letter-spacing:.12em;color:#5d6577}
+.rot.mar{font-size:14px;font-style:italic;color:#3b6ea5}
+.rot.estrecho{font-size:11px;font-style:italic;color:#3b6ea5}
+.rot.ciudad{font-size:11px;color:#2b3242}
+.rot.ciudad span{transform:translate(-3px,-50%)}
+.rot.ciudad::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#2b3242;margin-right:4px;vertical-align:middle}
+@media (prefers-color-scheme:dark){.rot.pais{color:#a0a7b6}.rot.ciudad{color:#d5d9e2}.rot.ciudad::before{background:#d5d9e2}.rot.mar,.rot.estrecho{color:#8fb0e8}}
+.zlejos .rot.ciudad{display:none}
+footer{max-width:1200px;margin:0 auto;padding:8px 16px 32px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="demo">Prototipo con DATOS FICTICIOS de demostración. Ningún buque ni incidente corresponde a hechos reales.</div>
+<header>
+  <h1>Monitor del Mar Rojo</h1>
+  <p class="sub">Verificación OSINT de los ataques reivindicados por los hutíes y riesgo para el transporte marítimo. Última actualización: <span id="fecha">–</span></p>
+</header>
+<nav>
+  <button data-v="panel" class="on">Panel</button>
+  <button data-v="riesgo">Calculadora de riesgo</button>
+  <button data-v="pendientes">Pendientes de verificar</button>
+  <button data-v="metodo">Método</button>
+  <a href="nombres.html">Generador de nombres árabes →</a>
+</nav>
+<main>
+  <section id="v-panel">
+    <div class="kpis" id="kpis"></div>
+    <div class="filtros">
+      <select id="f-estado"><option value="">Todos los estados</option></select>
+      <select id="f-vinculo"><option value="">Todos los vínculos</option></select>
+      <select id="f-zona"><option value="">Todas las zonas</option></select>
+      <input id="f-desde" type="date" title="Desde">
+      <input id="f-hasta" type="date" title="Hasta">
+    </div>
+    <div class="grid">
+      <div id="mapa"></div>
+      <div class="panel lista" id="lista"></div>
+    </div>
+    <div class="grid">
+      <div class="panel ficha" id="ficha"><p class="nota">Selecciona un incidente en el mapa o en la lista para ver su ficha.</p></div>
+      <div class="panel"><h3 style="margin-top:0">Resultado de la verificación</h3><div class="barras" id="barras"></div></div>
+    </div>
+  </section>
+
+  <section id="v-riesgo" class="oculto">
+    <div class="grid">
+      <div class="panel form" id="calc"></div>
+      <div class="panel" id="calc-res"></div>
+    </div>
+  </section>
+
+  <section id="v-pendientes" class="oculto">
+    <div class="grid">
+      <div class="panel">
+        <h3 style="margin-top:0">Recogido automáticamente</h3>
+        <p class="nota">Cada día, el recolector añade aquí avisos y noticias que pueden ser un ataque. Nada se publica en el mapa hasta que un analista lo verifica.</p>
+        <div id="pend"></div>
+      </div>
+      <div class="panel form">
+        <h3 style="margin-top:0">Verificar</h3>
+        <div id="vform"><p class="nota">Pulsa "Verificar" en un elemento de la lista.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-metodo" class="oculto">
+    <div class="panel">
+      <h3 style="margin-top:0">Cómo se trabaja</h3>
+      <ol>
+        <li><b>Recogida automática.</b> Un proceso diario recoge avisos de seguridad marítima y noticias con palabras clave (en inglés y en árabe) y los deja como pendientes.</li>
+        <li><b>Verificación por el analista.</b> Cada reivindicación se contrasta con la posición de los buques (AIS), imágenes de satélite y avisos oficiales.</li>
+        <li><b>Clasificación.</b> Confirmado, exagerado (hubo incidente, pero menor de lo anunciado), no verificable o falso.</li>
+        <li><b>Fiabilidad de las fuentes.</b> Sistema de la OTAN: letra (fiabilidad de la fuente, A a F) y número (credibilidad de la información, 1 a 6).</li>
+        <li><b>Riesgo.</b> Los incidentes confirmados alimentan la calculadora de riesgo por perfil de buque.</li>
+      </ol>
+      <table>
+        <tr><th>Letra</th><th>Fiabilidad de la fuente</th><th>Número</th><th>Credibilidad de la información</th></tr>
+        <tr><td>A</td><td>Totalmente fiable</td><td>1</td><td>Confirmada por otras fuentes</td></tr>
+        <tr><td>B</td><td>Normalmente fiable</td><td>2</td><td>Probablemente cierta</td></tr>
+        <tr><td>C</td><td>Bastante fiable</td><td>3</td><td>Posiblemente cierta</td></tr>
+        <tr><td>D</td><td>Normalmente no fiable</td><td>4</td><td>Dudosa</td></tr>
+        <tr><td>E</td><td>No fiable</td><td>5</td><td>Improbable</td></tr>
+        <tr><td>F</td><td>No se puede valorar</td><td>6</td><td>No se puede valorar</td></tr>
+      </table>
+      <p class="nota">Límites: muchos buques apagan el AIS en la zona, por lo que la verificación se apoya también en radar por satélite. La herramienta no recoge contenido de canales de grupos armados: sus comunicados se toman de prensa y de archivos de investigación.</p>
+    </div>
+  </section>
+</main>
+<footer>Prototipo para el TFM del Máster en Análisis de Inteligencia (URJC) · Aarón Sánchez Matías</footer>
+
+<script id="datos-ejemplo" type="application/json">{"aviso": "DATOS FICTICIOS DE DEMOSTRACIÓN. Ningún buque, fecha ni fuente corresponde a hechos reales.", "actualizado": "2026-11-07", "incidentes": [{"id": "D-001", "fecha_reivindicacion": "2025-01-14", "fecha_incidente": "2025-01-13", "buque": "Buque ficticio A", "tipo": "portacontenedores", "bandera": "Liberia", "vinculo": "israel", "zona": "mar_rojo_sur", "lat": 14.6, "lon": 42.2, "reivindicacion_ar": "أعلنت القوات استهداف السفينة (أ) في البحر الأحمر بصاروخ.", "reivindicacion_es": "Las fuerzas anuncian haber alcanzado el buque A en el Mar Rojo con un misil.", "estado": "confirmado", "danos": "Impacto en cubierta, sin víctimas", "fuentes": [{"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1}, {"nombre": "Imagen de satélite (ejemplo)", "fiabilidad": "A", "credibilidad": 2}], "notas": "Posición del buque coherente con la reivindicación."}, {"id": "D-002", "fecha_reivindicacion": "2025-02-03", "fecha_incidente": null, "buque": "Buque ficticio B", "tipo": "petrolero", "bandera": "Panamá", "vinculo": "eeuu", "zona": "golfo_aden", "lat": 12.9, "lon": 46.4, "reivindicacion_ar": "أعلنت القوات استهداف ناقلة النفط (ب) في خليج عدن.", "reivindicacion_es": "Las fuerzas anuncian haber alcanzado el petrolero B en el golfo de Adén.", "estado": "falso", "danos": "Ninguno", "fuentes": [{"nombre": "Datos de posición AIS (ejemplo)", "fiabilidad": "B", "credibilidad": 2}, {"nombre": "Declaración de la naviera (ejemplo)", "fiabilidad": "C", "credibilidad": 2}], "notas": "El buque estaba atracado a más de 900 km en la fecha anunciada."}, {"id": "D-003", "fecha_reivindicacion": "2025-03-21", "fecha_incidente": "2025-03-20", "buque": "Buque ficticio C", "tipo": "granelero", "bandera": "Islas Marshall", "vinculo": "reino_unido", "zona": "bab_al_mandeb", "lat": 12.7, "lon": 43.3, "reivindicacion_ar": "أعلنت القوات إصابة السفينة (ج) إصابة مباشرة وإغراقها.", "reivindicacion_es": "Las fuerzas anuncian un impacto directo y el hundimiento del buque C.", "estado": "exagerado", "danos": "Explosión cercana, daños menores; no se hundió", "fuentes": [{"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1}, {"nombre": "Prensa marítima (ejemplo)", "fiabilidad": "B", "credibilidad": 2}], "notas": "Hubo incidente, pero el buque siguió navegando."}, {"id": "D-004", "fecha_reivindicacion": "2025-05-08", "fecha_incidente": null, "buque": "Buque ficticio D", "tipo": "portacontenedores", "bandera": "Malta", "vinculo": "ninguno", "zona": "mar_rojo_sur", "lat": 15.4, "lon": 41.9, "reivindicacion_ar": "أعلنت القوات استهداف السفينة (د) بطائرة مسيرة.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque D con un dron.", "estado": "no_verificable", "danos": "Desconocidos", "fuentes": [{"nombre": "Canal de agregación OSINT (ejemplo)", "fiabilidad": "E", "credibilidad": 4}], "notas": "Sin aviso oficial ni imagen; AIS apagado en la zona."}, {"id": "D-005", "fecha_reivindicacion": "2025-06-17", "fecha_incidente": "2025-06-16", "buque": "Buque ficticio E", "tipo": "petrolero", "bandera": "Grecia", "vinculo": "israel", "zona": "mar_rojo_sur", "lat": 14.1, "lon": 42.7, "reivindicacion_ar": "أعلنت القوات استهداف ناقلة (هـ) مرتبطة بالكيان.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero E, al que vinculan con Israel.", "estado": "confirmado", "danos": "Incendio controlado", "fuentes": [{"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1}, {"nombre": "Operación naval europea (ejemplo)", "fiabilidad": "A", "credibilidad": 1}], "notas": ""}, {"id": "D-006", "fecha_reivindicacion": "2025-08-02", "fecha_incidente": null, "buque": "Buque ficticio F", "tipo": "granelero", "bandera": "Liberia", "vinculo": "ninguno", "zona": "golfo_aden", "lat": 13.3, "lon": 48.1, "reivindicacion_ar": "أعلنت القوات استهداف السفينة (و) في خليج عدن.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque F en el golfo de Adén.", "estado": "falso", "danos": "Ninguno", "fuentes": [{"nombre": "Datos de posición AIS (ejemplo)", "fiabilidad": "B", "credibilidad": 2}], "notas": "Nombre del buque no coincide con ningún registro."}, {"id": "D-007", "fecha_reivindicacion": "2026-03-04", "fecha_incidente": "2026-03-03", "buque": "Buque ficticio G", "tipo": "portacontenedores", "bandera": "Singapur", "vinculo": "eeuu", "zona": "bab_al_mandeb", "lat": 12.5, "lon": 43.5, "reivindicacion_ar": "أعلنت القوات استهداف السفينة (ز) في باب المندب.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque G en Bab al-Mandeb.", "estado": "confirmado", "danos": "Daños en el puente", "fuentes": [{"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1}], "notas": ""}, {"id": "D-008", "fecha_reivindicacion": "2026-03-19", "fecha_incidente": null, "buque": "Buque ficticio H", "tipo": "petrolero", "bandera": "Islas Marshall", "vinculo": "reino_unido", "zona": "mar_rojo_sur", "lat": 16.2, "lon": 41.6, "reivindicacion_ar": "أعلنت القوات استهداف ناقلة (ح) بعدة صواريخ.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero H con varios misiles.", "estado": "exagerado", "danos": "Misiles caídos al agua cerca del buque", "fuentes": [{"nombre": "Operación naval europea (ejemplo)", "fiabilidad": "A", "credibilidad": 2}, {"nombre": "Prensa regional (ejemplo)", "fiabilidad": "C", "credibilidad": 3}], "notas": ""}, {"id": "D-009", "fecha_reivindicacion": "2026-07-23", "fecha_incidente": "2026-07-22", "buque": "Buque ficticio I", "tipo": "petrolero", "bandera": "Arabia Saudí", "vinculo": "arabia_saudi", "zona": "mar_rojo_norte", "lat": 23.9, "lon": 37.9, "reivindicacion_ar": "أعلنت القوات استهداف ناقلة نفط (ط) قرب ينبع.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero I cerca de Yanbu.", "estado": "confirmado", "danos": "Incendio a bordo", "fuentes": [{"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1}, {"nombre": "Imagen de satélite (ejemplo)", "fiabilidad": "A", "credibilidad": 2}], "notas": "Primer ataque de la serie en el norte del Mar Rojo."}, {"id": "D-010", "fecha_reivindicacion": "2026-07-29", "fecha_incidente": null, "buque": "Buque ficticio J", "tipo": "granelero", "bandera": "Arabia Saudí", "vinculo": "arabia_saudi", "zona": "mar_rojo_sur", "lat": 16.9, "lon": 41.9, "reivindicacion_ar": "أعلنت القوات استهداف السفينة (ي) قبالة جازان.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque J frente a Jazán.", "estado": "no_verificable", "danos": "Desconocidos", "fuentes": [{"nombre": "Prensa regional (ejemplo)", "fiabilidad": "C", "credibilidad": 4}], "notas": ""}, {"id": "D-011", "fecha_reivindicacion": "2026-08-05", "fecha_incidente": "2026-08-05", "buque": "Buque ficticio K", "tipo": "petrolero", "bandera": "Arabia Saudí", "vinculo": "arabia_saudi", "zona": "mar_rojo_norte", "lat": 24.2, "lon": 37.6, "reivindicacion_ar": "أعلنت القوات استهداف ناقلة (ك) بصاروخ باليستي.", "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero K con un misil balístico.", "estado": "exagerado", "danos": "Daños leves", "fuentes": [{"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 2}], "notas": "El tipo de arma no se puede confirmar."}, {"id": "D-012", "fecha_reivindicacion": "2026-09-12", "fecha_incidente": null, "buque": "Buque ficticio L", "tipo": "portacontenedores", "bandera": "Hong Kong", "vinculo": "ninguno", "zona": "golfo_aden", "lat": 12.2, "lon": 45.2, "reivindicacion_ar": "أعلنت القوات استهداف السفينة (ل).", "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque L.", "estado": "falso", "danos": "Ninguno", "fuentes": [{"nombre": "Datos de posición AIS (ejemplo)", "fiabilidad": "B", "credibilidad": 2}, {"nombre": "Declaración de la naviera (ejemplo)", "fiabilidad": "C", "credibilidad": 2}], "notas": ""}]}</script>
+<script id="pend-ejemplo" type="application/json">{"aviso": "Ejemplos ficticios. En la versión real, este archivo lo rellena cada día el recolector automático (scripts/recolectar.py).", "actualizado": "2026-11-07T06:00:00Z", "pendientes": [{"id": "P-ejemplo-1", "fecha": "2026-11-06", "fuente": "Prensa marítima (ejemplo)", "titulo": "Buque informa de una explosión cerca de su posición al oeste de Hodeida", "enlace": ""}, {"id": "P-ejemplo-2", "fecha": "2026-11-05", "fuente": "Aviso de seguridad marítima (ejemplo)", "titulo": "Aviso: actividad sospechosa de embarcaciones pequeñas en Bab al-Mandeb", "enlace": ""}, {"id": "P-ejemplo-3", "fecha": "2026-11-05", "fuente": "Prensa regional en árabe (ejemplo)", "titulo": "الحوثيون يعلنون استهداف سفينة في البحر الأحمر", "enlace": ""}]}</script>
+<script id="modelo-ejemplo" type="application/json">{"aviso": "Pesos provisionales para la demostración. En el TFM se calibrarán con los incidentes verificados.", "factores": {"vinculo": {"etiqueta": "Vínculo comercial del buque", "opciones": {"israel": {"texto": "Israel", "peso": 3.0}, "eeuu": {"texto": "Estados Unidos", "peso": 2.5}, "arabia_saudi": {"texto": "Arabia Saudí", "peso": 2.5}, "reino_unido": {"texto": "Reino Unido", "peso": 2.0}, "ninguno": {"texto": "Ninguno conocido", "peso": 0.0}}}, "zona": {"etiqueta": "Zona de tránsito", "opciones": {"bab_al_mandeb": {"texto": "Bab al-Mandeb", "peso": 2.5}, "mar_rojo_sur": {"texto": "Mar Rojo sur", "peso": 2.0}, "golfo_aden": {"texto": "Golfo de Adén", "peso": 1.5}, "mar_rojo_norte": {"texto": "Mar Rojo norte", "peso": 1.0}}}, "tipo": {"etiqueta": "Tipo de buque", "opciones": {"petrolero": {"texto": "Petrolero", "peso": 1.5}, "portacontenedores": {"texto": "Portacontenedores", "peso": 1.0}, "granelero": {"texto": "Granelero", "peso": 1.0}, "otro": {"texto": "Otro", "peso": 0.5}}}, "escalas": {"etiqueta": "Escalas recientes en puertos israelíes", "opciones": {"si": {"texto": "Sí", "peso": 2.0}, "no": {"texto": "No", "peso": 0.0}}}}, "umbrales": {"medio": 3.5, "alto": 6.0}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const ETQ={estado:{confirmado:"Confirmado",exagerado:"Exagerado",no_verificable:"No verificable",falso:"Falso"},
+vinculo:{israel:"Israel",eeuu:"Estados Unidos",reino_unido:"Reino Unido",arabia_saudi:"Arabia Saudí",ninguno:"Ninguno conocido"},
+zona:{bab_al_mandeb:"Bab al-Mandeb",mar_rojo_sur:"Mar Rojo sur",mar_rojo_norte:"Mar Rojo norte",golfo_aden:"Golfo de Adén"}};
+const ROTULOS=[
+["ARABIA SAUDÍ",22.0,44.5,"pais"],["YEMEN",16.0,46.8,"pais"],["ERITREA",15.4,38.3,"pais"],["SUDÁN",18.5,33.5,"pais"],
+["EGIPTO",25.5,31.0,"pais"],["ETIOPÍA",10.3,39.2,"pais"],["YIBUTI",11.75,42.2,"pais"],["SOMALIA",9.4,46.5,"pais"],["OMÁN",19.5,54.5,"pais"],
+["Mar Rojo",20.2,38.6,"mar"],["Golfo de Adén",11.7,49.3,"mar"],["Bab al-Mandeb",11.95,43.95,"estrecho"],["Mar Arábigo",14.5,57.0,"mar"],
+["Saná",15.37,44.19,"ciudad"],["Hodeida",14.8,42.95,"ciudad"],["Adén",12.8,45.03,"ciudad"],["Moca",13.32,43.25,"ciudad"],
+["Yeda",21.49,39.19,"ciudad"],["Yanbu",24.09,38.06,"ciudad"],["Jazán",16.89,42.55,"ciudad"],["Puerto Sudán",19.62,37.22,"ciudad"],
+["Masaua",15.61,39.45,"ciudad"],["Suez",29.97,32.55,"ciudad"],["Eilat",29.56,34.95,"ciudad"]];
+const COLOR={confirmado:"#2e7d4f",exagerado:"#c77d12",no_verificable:"#6b7280",falso:"#b3261e"};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+async function cargar(ruta,idFallback){
+  try{const r=await fetch(ruta,{cache:"no-store"});if(!r.ok)throw 0;return await r.json();}
+  catch(e){return JSON.parse(document.getElementById(idFallback).textContent);}
+}
+let D,P,M,mapa,capa,marcadores={};
+(async()=>{
+  [D,P,M]=await Promise.all([cargar("data/incidentes.json","datos-ejemplo"),cargar("data/pendientes.json","pend-ejemplo"),cargar("data/modelo_riesgo.json","modelo-ejemplo")]);
+  document.getElementById("fecha").textContent=D.actualizado||"–";
+  for(const k of ["estado","vinculo","zona"]){
+    const s=document.getElementById("f-"+k);
+    for(const [v,t] of Object.entries(ETQ[k])) s.insertAdjacentHTML("beforeend",`<option value="${v}">${t}</option>`);
+    s.onchange=pintar;
+  }
+  document.getElementById("f-desde").onchange=pintar;document.getElementById("f-hasta").onchange=pintar;
+  iniciarMapa();pintar();calculadora();pendientes();
+})();
+function filtrados(){
+  const g=id=>document.getElementById(id).value;
+  return D.incidentes.filter(i=>(!g("f-estado")||i.estado===g("f-estado"))&&(!g("f-vinculo")||i.vinculo===g("f-vinculo"))&&(!g("f-zona")||i.zona===g("f-zona"))&&(!g("f-desde")||i.fecha_reivindicacion>=g("f-desde"))&&(!g("f-hasta")||i.fecha_reivindicacion<=g("f-hasta")));
+}
+function iniciarMapa(){
+  if(typeof L==="undefined"){document.getElementById("mapa").innerHTML='<p class="nota" style="padding:16px">No se ha podido cargar el mapa (sin conexión). La lista y las fichas siguen funcionando.</p>';return;}
+  mapa=L.map("mapa").setView([17,42],5);
+  // Mapa base sin etiquetas: todos los nombres se ponen en español desde ROTULOS
+  const oscuro=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches;
+  L.tileLayer(`https://{s}.basemaps.cartocdn.com/${oscuro?"dark":"light"}_nolabels/{z}/{x}/{y}{r}.png`,{maxZoom:10,subdomains:"abcd",attribution:"© OpenStreetMap · © CARTO"}).addTo(mapa);
+  ROTULOS.forEach(([t,lat,lon,c])=>L.marker([lat,lon],{interactive:false,keyboard:false,icon:L.divIcon({className:"rot "+c,html:"<span>"+t+"</span>",iconSize:null})}).addTo(mapa));
+  const zoomCls=()=>document.getElementById("mapa").classList.toggle("zlejos",mapa.getZoom()<6);
+  mapa.on("zoomend",zoomCls);zoomCls();
+  capa=L.layerGroup().addTo(mapa);
+}
+function pintar(){
+  const F=filtrados();
+  const n=F.length,c=k=>F.filter(i=>i.estado===k).length;
+  const pct=n?Math.round(100*c("confirmado")/n):0;
+  document.getElementById("kpis").innerHTML=[
+    [n,"Reivindicaciones"],[c("confirmado"),"Confirmadas"],[c("exagerado"),"Exageradas"],[c("falso"),"Falsas"],[pct+" %","Se cumplieron tal como se anunciaron"]
+  ].map(([b,s])=>`<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join("");
+  document.getElementById("lista").innerHTML=F.slice().sort((a,b)=>b.fecha_reivindicacion.localeCompare(a.fecha_reivindicacion)).map(i=>
+    `<div class="item" data-id="${i.id}"><span class="chip ${i.estado}">${ETQ.estado[i.estado]}</span> <b>${esc(i.buque)}</b><br><span class="nota">${i.fecha_reivindicacion} · ${ETQ.zona[i.zona]} · vínculo: ${ETQ.vinculo[i.vinculo]}</span></div>`).join("")||'<p class="nota">Ningún incidente con estos filtros.</p>';
+  document.querySelectorAll(".item").forEach(el=>el.onclick=()=>ficha(el.dataset.id,true));
+  const max=Math.max(1,...Object.keys(ETQ.estado).map(c));
+  document.getElementById("barras").innerHTML=Object.keys(ETQ.estado).map(k=>`<div class="fila"><span class="et">${ETQ.estado[k]}</span><span class="bar" style="width:${Math.max(2,160*c(k)/max)}px;background:${COLOR[k]}"></span><span class="n">${c(k)}</span></div>`).join("")+
+   `<p class="nota">Solo el ${pct} % de las reivindicaciones filtradas se cumplió tal como se anunció.</p>`;
+  if(capa){capa.clearLayers();marcadores={};
+    F.forEach(i=>{const m=L.circleMarker([i.lat,i.lon],{radius:8,color:"#fff",weight:2,fillColor:COLOR[i.estado],fillOpacity:.95}).addTo(capa);
+      m.bindTooltip(`${esc(i.buque)} · ${ETQ.estado[i.estado]}`);m.on("click",()=>ficha(i.id,false));marcadores[i.id]=m;});}
+}
+function ficha(id,centrar){
+  const i=D.incidentes.find(x=>x.id===id);if(!i)return;
+  if(centrar&&mapa&&marcadores[id])mapa.setView([i.lat,i.lon],7);
+  document.getElementById("ficha").innerHTML=`<h3>${esc(i.buque)} <span class="chip ${i.estado}">${ETQ.estado[i.estado]}</span></h3>
+  <p class="nota">${i.id} · Reivindicado el ${i.fecha_reivindicacion}${i.fecha_incidente?" · Incidente el "+i.fecha_incidente:" · Sin incidente comprobado"}</p>
+  <div><b>Comunicado original</b></div><div class="ar" lang="ar">${esc(i.reivindicacion_ar)}</div><p class="tr">Traducción: ${esc(i.reivindicacion_es)}</p>
+  <table><tr><td>Tipo</td><td>${esc(i.tipo)}</td></tr><tr><td>Bandera</td><td>${esc(i.bandera)}</td></tr><tr><td>Vínculo declarado</td><td>${ETQ.vinculo[i.vinculo]}</td></tr><tr><td>Zona</td><td>${ETQ.zona[i.zona]}</td></tr><tr><td>Daños comprobados</td><td>${esc(i.danos)}</td></tr></table>
+  <p style="margin:10px 0 4px"><b>Fuentes de contraste</b></p>
+  <table>${i.fuentes.map(f=>`<tr><td>${esc(f.nombre)}</td><td><b>${f.fiabilidad}${f.credibilidad}</b></td></tr>`).join("")}</table>
+  ${i.notas?`<p class="nota">${esc(i.notas)}</p>`:""}`;
+}
+function calculadora(){
+  const c=document.getElementById("calc");
+  c.innerHTML=`<h3 style="margin-top:0">Perfil del buque</h3>`+Object.entries(M.factores).map(([k,f])=>`<label for="r-${k}">${f.etiqueta}</label><select id="r-${k}">${Object.entries(f.opciones).map(([v,o])=>`<option value="${v}">${o.texto}</option>`).join("")}</select>`).join("")+`<p class="nota">${esc(M.aviso)}</p>`;
+  Object.keys(M.factores).forEach(k=>document.getElementById("r-"+k).onchange=calcular);
+  calcular();
+}
+function calcular(){
+  let total=0,filas=[];
+  for(const [k,f] of Object.entries(M.factores)){const v=document.getElementById("r-"+k).value,o=f.opciones[v];total+=o.peso;filas.push(`<tr><td>${f.etiqueta}</td><td>${o.texto}</td><td>+${o.peso.toFixed(1)}</td></tr>`);}
+  const nivel=total>=M.umbrales.alto?"alto":total>=M.umbrales.medio?"medio":"bajo";
+  const vin=document.getElementById("r-vinculo").value,zon=document.getElementById("r-zona").value;
+  const mismo=D.incidentes.filter(i=>i.vinculo===vin),conf=mismo.filter(i=>i.estado==="confirmado"||i.estado==="exagerado");
+  const enZona=D.incidentes.filter(i=>i.zona===zon&&(i.estado==="confirmado"||i.estado==="exagerado")).length;
+  document.getElementById("calc-res").innerHTML=`<h3 style="margin-top:0">Riesgo estimado</h3><div class="nivel ${nivel}">${nivel.toUpperCase()} <span class="nota">(${total.toFixed(1)} puntos)</span></div>
+  <table><tr><th>Factor</th><th>Valor</th><th>Peso</th></tr>${filas.join("")}</table>
+  <p style="margin-top:12px"><b>Qué dicen los datos verificados</b></p>
+  <p class="nota">Reivindicaciones contra buques con vínculo "${ETQ.vinculo[vin]}": ${mismo.length}, de las que ${conf.length} tuvieron un incidente real. Incidentes reales registrados en ${ETQ.zona[zon]}: ${enZona}.</p>`;
+}
+function pendientes(){
+  document.getElementById("pend").innerHTML=(P.pendientes||[]).map(p=>`<div class="item"><b ${/[؀-ۿ]/.test(p.titulo)?'lang="ar" dir="rtl"':''}>${esc(p.titulo)}</b><br><span class="nota">${p.fecha} · ${esc(p.fuente)}</span> ${p.enlace?`· <a href="${esc(p.enlace)}" target="_blank" rel="noopener">abrir</a>`:""}<br><button class="btn" data-p="${p.id}">Verificar</button></div>`).join("")||'<p class="nota">No hay pendientes.</p>';
+  document.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>formulario(P.pendientes.find(x=>x.id===b.dataset.p)));
+}
+function formulario(p){
+  const sel=(id,obj)=>`<select id="${id}">${Object.entries(obj).map(([v,t])=>`<option value="${v}">${t}</option>`).join("")}</select>`;
+  document.getElementById("vform").innerHTML=`<p class="nota">${esc(p.titulo)}</p>
+  <label>Buque</label><input id="vf-buque"><label>Fecha del incidente</label><input id="vf-fecha" type="date" value="${p.fecha}">
+  <label>Estado</label>${sel("vf-estado",ETQ.estado)}<label>Vínculo declarado</label>${sel("vf-vinculo",ETQ.vinculo)}<label>Zona</label>${sel("vf-zona",ETQ.zona)}
+  <label>Latitud / longitud</label><input id="vf-pos" placeholder="14.5, 42.3">
+  <label>Fiabilidad de la fuente principal (letra y número)</label><input id="vf-fia" placeholder="A1">
+  <button class="btn" id="vf-gen">Generar ficha</button>
+  <label>Pega esto en data/incidentes.json</label><textarea id="vf-out" readonly></textarea>
+  <button class="btn" id="vf-cop">Copiar</button>`;
+  document.getElementById("vf-gen").onclick=()=>{
+    const [lat,lon]=(document.getElementById("vf-pos").value||"0,0").split(",").map(Number),fia=document.getElementById("vf-fia").value||"F6";
+    const o={id:"R-"+Date.now().toString(36),fecha_reivindicacion:p.fecha,fecha_incidente:document.getElementById("vf-fecha").value||null,buque:document.getElementById("vf-buque").value,
+      tipo:"",bandera:"",vinculo:document.getElementById("vf-vinculo").value,zona:document.getElementById("vf-zona").value,lat,lon,reivindicacion_ar:"",reivindicacion_es:p.titulo,
+      estado:document.getElementById("vf-estado").value,danos:"",fuentes:[{nombre:p.fuente,fiabilidad:fia[0],credibilidad:Number(fia.slice(1))||6}],notas:""};
+    document.getElementById("vf-out").value=JSON.stringify(o,null,2)+",";
+  };
+  document.getElementById("vf-cop").onclick=()=>navigator.clipboard?.writeText(document.getElementById("vf-out").value);
+}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll("main>section").forEach(s=>s.classList.toggle("oculto",s.id!=="v-"+b.dataset.v));
+  if(b.dataset.v==="panel"&&mapa)setTimeout(()=>mapa.invalidateSize(),50);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generador de nombres árabes</title>
+<style>
+:root{--bg:#f6f5f2;--panel:#fff;--ink:#1d2433;--muted:#5d6577;--line:#e2e0da;--accent:#1f3864;--warn-bg:#fff4d6;--warn-ink:#6b4a00;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--panel:#1b1f29;--ink:#e7e9ee;--muted:#a0a7b6;--line:#2c3240;--accent:#8fb0e8;--warn-bg:#3a2f12;--warn-ink:#f4d58d;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 40px}
+h1{margin:0;font-size:24px}.sub{color:var(--muted);margin:4px 0 16px}
+a{color:var(--accent)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+input{font:inherit;font-size:18px;width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.ej{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.ej button,.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer;font:inherit;font-size:14px}
+.btn.p{background:var(--accent);color:#fff;border-color:var(--accent);border-radius:8px}
+.lectura{font-size:18px;margin:4px 0 0}
+table{border-collapse:collapse;width:100%}
+td,th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top;font-size:14px}
+.ar{font-size:20px;direction:rtl}
+.nota{color:var(--muted);font-size:13px}
+.aviso{background:var(--warn-bg);color:var(--warn-ink);border-radius:8px;padding:8px 10px;font-size:13px}
+.vars{columns:3 180px;column-gap:16px;font-family:ui-monospace,Menlo,monospace;font-size:14px}
+.vars div{break-inside:avoid;padding:2px 0}
+.acc{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+textarea{width:100%;min-height:90px;font:13px/1.4 ui-monospace,Menlo,monospace;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p><a href="index.html">← Monitor del Mar Rojo</a></p>
+  <h1>Generador de nombres árabes</h1>
+  <p class="sub">Escribe un nombre en árabe o en letras latinas. La herramienta explica qué significa, cómo se pronuncia y genera todas las formas en que puede aparecer escrito, para buscarlo en listas de sanciones, registros y prensa.</p>
+
+  <div class="panel">
+    <input id="entrada" placeholder="Ej.: Mohammed bin Ali · عبد الرحمن · Abu Ali al-Hassan" autocomplete="off">
+    <div class="ej"><span class="nota">Ejemplos:</span>
+      <button>Mohammed bin Ali</button><button>عبد الله بن حسين</button><button>Abu Khalid al-Nasser</button><button>Youssef Abdelrahman</button>
+    </div>
+  </div>
+
+  <div id="res"></div>
+
+  <div class="panel">
+    <h3 style="margin-top:0">Por qué hace falta</h3>
+    <p>El árabe tiene sonidos que no existen en español y en inglés, y no hay una única forma oficial de escribirlos con letras latinas. Un mismo nombre aparece de forma distinta según el país, el idioma de quien lo escribe o el documento. Si solo buscas una forma, se te escapa la persona.</p>
+    <table>
+      <tr><th>Partícula</th><th>Árabe</th><th>Significa</th><th>Formas habituales</th></tr>
+      <tr><td>al-</td><td class="ar">ال</td><td>"el, la". En apellidos indica a menudo la familia, la tribu o el lugar de origen</td><td>al-, el-, Al, El, ul-; ante ciertas letras se asimila: ash-, ar-, as-, ad-, an-</td></tr>
+      <tr><td>bin / ibn</td><td class="ar">بن / ابن</td><td>"hijo de"</td><td>bin, ben, ibn, b.</td></tr>
+      <tr><td>bint</td><td class="ar">بنت</td><td>"hija de"</td><td>bint, bent</td></tr>
+      <tr><td>Abu</td><td class="ar">أبو</td><td>"padre de" (apodo por el hijo mayor, o nombre de guerra)</td><td>Abu, Abou, Abo, Bu</td></tr>
+      <tr><td>Umm</td><td class="ar">أم</td><td>"madre de"</td><td>Umm, Um, Om</td></tr>
+      <tr><td>Abd</td><td class="ar">عبد</td><td>"siervo de", siempre seguido de un nombre de Dios</td><td>Abd, Abdel, Abdul, Abdal, Abd al-</td></tr>
+    </table>
+  </div>
+  <p class="nota">Las pronunciaciones son aproximaciones para hispanohablantes. La herramienta conoce los nombres más frecuentes; para los demás aplica reglas de transliteración y lo indica.</p>
+</div>
+<script>
+// ---------- Diccionario: árabe, significado, pronunciación aproximada, variantes ----------
+const N=[
+["محمد","alabado, digno de alabanza","mu-JÁ-mad",["Muhammad","Mohammed","Mohammad","Mohamed","Mohamad","Muhammed","Mohamud","Mohd","Md"]],
+["أحمد","el más alabado","ÁJ-mad",["Ahmad","Ahmed","Ahmet","Achmad","Ahmd"]],
+["محمود","alabado","maj-MUD",["Mahmoud","Mahmud","Mahmood","Mehmud"]],
+["مصطفى","el elegido","mus-TÁ-fa",["Mustafa","Mostafa","Moustafa","Mustapha","Mustafah"]],
+["عبد الله","siervo de Dios","ab-DÁ-la",["Abdullah","Abdallah","Abd Allah","Abdulla","Abdollah","Abdellah","Abd-Allah"]],
+["عبد الرحمن","siervo del Misericordioso","abd-ar-RAJ-man",["Abdulrahman","Abdelrahman","Abd al-Rahman","Abdurrahman","Abderrahmane","Abdul Rahman","Abdel Rahman","Abdalrahman"]],
+["عبد العزيز","siervo del Poderoso","abd-al-a-SIS",["Abdulaziz","Abdelaziz","Abd al-Aziz","Abdul Aziz","Abdel Aziz","Abdalaziz"]],
+["عبد الكريم","siervo del Generoso","abd-al-ka-RIM",["Abdulkarim","Abdelkarim","Abd al-Karim","Abdul Karim","Abdel Karim","Abdulkareem"]],
+["عبد القادر","siervo del Todopoderoso","abd-al-QA-dir",["Abdulqadir","Abdelkader","Abd al-Qadir","Abdul Qadir","Abdelkadir","Abdulkadir"]],
+["علي","elevado, noble","Á-li",["Ali","Aly","Alee"]],
+["عمر","vida, longevo","Ú-mar",["Omar","Umar","Omer","Umer"]],
+["حسن","bueno, bello","JÁ-san",["Hassan","Hasan","Hassen","Hasen"]],
+["حسين","el pequeño Hasán, diminutivo de bueno","ju-SÉIN",["Hussein","Husain","Hussain","Hosein","Hossein","Housein","Husayn","Hüseyin"]],
+["إبراهيم","Abraham","ib-ra-JIM",["Ibrahim","Ebrahim","Brahim","Ibraheem","Ibrahem"]],
+["يوسف","José","IÚ-suf",["Yousef","Yusuf","Youssef","Yousif","Yosef","Youcef","Yussuf","Yousuf"]],
+["سليمان","Salomón","su-lei-MÁN",["Sulayman","Suleiman","Sleiman","Soliman","Sulaiman","Suleyman"]],
+["موسى","Moisés","MÚ-sa",["Musa","Moussa","Mousa","Mussa","Moosa"]],
+["عيسى","Jesús","Í-sa",["Isa","Issa","Eissa","Esa"]],
+["داود","David","da-UD",["Dawud","Daoud","Dawood","Daud","Davud"]],
+["زكريا","Zacarías","sa-ka-RÍ-ya",["Zakaria","Zakariya","Zakariyya","Zacharia","Zakarya"]],
+["خالد","eterno","JÁ-lid (j fuerte)",["Khaled","Khalid","Halid","Khaleed"]],
+["صالح","piadoso, justo","SÁ-lij",["Saleh","Salih","Salleh"]],
+["صلاح","rectitud, virtud","sa-LÁJ",["Salah","Salaah","Slah"]],
+["سعيد","feliz","sa-ÍD",["Said","Saeed","Saied","Sa'id","Saïd"]],
+["حمد","alabanza","JÁ-mad",["Hamad","Hamd"]],
+["فيصل","el que separa (juez)","FÁI-sal",["Faisal","Faysal","Feisal","Faycal","Fayçal"]],
+["سلطان","autoridad, poder","sul-TÁN",["Sultan","Soltan","Sultaan"]],
+["سلمان","seguro, a salvo","sal-MÁN",["Salman","Salmane","Selman"]],
+["ناصر","el que ayuda, protector","NÁ-sir",["Nasser","Naser","Nasir","Nacer","Naseer"]],
+["جمال","belleza","ya-MÁL",["Jamal","Gamal","Djamel","Jamel","Jamaal"]],
+["قاسم","el que reparte","QÁ-sim (q en la garganta)",["Qasim","Kassem","Kasim","Qassem","Gassim","Qasem"]],
+["طارق","el que llama a la puerta (el lucero del alba)","TÁ-riq",["Tariq","Tarek","Tarik","Tareq"]],
+["ماهر","hábil","MÁ-hir",["Maher","Mahir"]],
+["سامر","compañero de las veladas","SÁ-mir",["Samer","Samir"]],
+["رامي","arquero, tirador","RÁ-mi",["Rami","Ramy","Ramee"]],
+["بشار","portador de buenas noticias","bash-SHAR",["Bashar","Bachar","Bashshar","Bechar"]],
+["حافظ","guardián; quien memoriza el Corán","JÁ-fiz",["Hafez","Hafiz","Hafedh","Hafidh"]],
+["عثمان","nombre tradicional (el tercer califa)","uz-MÁN",["Othman","Uthman","Osman","Usman","Outhmane"]],
+["منصور","victorioso","man-SUR",["Mansour","Mansur","Mansoor"]],
+["فاطمة","nombre tradicional (la hija del Profeta)","FÁ-ti-ma",["Fatima","Fatma","Fatemeh","Fatimah"]],
+["عائشة","viva, llena de vida","Á-i-sha",["Aisha","Aicha","Ayesha","Aysha","Aishah"]],
+["مريم","María","MÁR-iam",["Maryam","Mariam","Meryem","Miriam"]],
+["زينب","nombre tradicional (nieta del Profeta)","SÁI-nab",["Zainab","Zaynab","Zeinab","Zeynep"]]
+];
+const PART={
+ al:{ar:"ال",es:"el / la (familia, origen)",pr:"al",v:["al-","el-","Al ","El ","al ",""]},
+ bin:{ar:"بن",es:"hijo de",pr:"bin",v:["bin","ben","ibn","b."]},
+ ibn:{ar:"ابن",es:"hijo de",pr:"ibn",v:["ibn","bin","ben","b."]},
+ bint:{ar:"بنت",es:"hija de",pr:"bint",v:["bint","bent"]},
+ abu:{ar:"أبو",es:"padre de",pr:"Á-bu",v:["Abu","Abou","Abo","Bu"]},
+ umm:{ar:"أم",es:"madre de",pr:"um",v:["Umm","Um","Om"]}
+};
+const PART_LAT={al:"al",el:"al",ul:"al",bin:"bin",ben:"bin",ibn:"ibn","b.":"bin",bint:"bint",bent:"bint",abu:"abu",abou:"abu",abo:"abu",bu:"abu",umm:"umm",um:"umm",om:"umm"};
+const PART_AR={"بن":"bin","ابن":"ibn","بنت":"bint","ابو":"abu","أبو":"abu","ام":"umm","أم":"umm"};
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z]/g,"");
+const normAr=s=>s.replace(/[ً-ْـ]/g,"").replace(/[أإآ]/g,"ا").replace(/\s+/g,"");
+const IDX={},IDXAR={};
+N.forEach((e,i)=>{IDXAR[normAr(e[0])]=i;e[3].forEach(v=>IDX[norm(v)]=i);});
+const SOLAR="tdrzsnl";
+// ---------- Reglas para nombres que no están en el diccionario ----------
+const REGLAS=[["ou","u"],["u","ou"],["oo","u"],["ee","i"],["i","ee"],["q","k"],["k","q"],["kh","h"],["dh","d"],["dh","z"],["th","t"],["th","s"],["sh","ch"],["j","g"],["j","dj"],["y","i"],["e","a"],["a","e"]];
+function variantesRegla(w){
+  const s=new Set([w]);
+  const l=w.toLowerCase();
+  for(const [a,b] of REGLAS){if(l.includes(a))s.add(l.replace(a,b));}
+  const dbl=l.replace(/([bcdfghjklmnpqrstvwxz])\1/g,"$1");if(dbl!==l)s.add(dbl);
+  const und=l.replace(/([sml])(?=[aeiou])/, "$1$1");if(und!==l)s.add(und);
+  return [...s].slice(0,14).map(x=>x.charAt(0).toUpperCase()+x.slice(1));
+}
+const MAPAR={"ا":"a","ب":"b","ت":"t","ث":"th","ج":"j","ح":"h","خ":"kh","د":"d","ذ":"dh","ر":"r","ز":"z","س":"s","ش":"sh","ص":"s","ض":"d","ط":"t","ظ":"z","ع":"'","غ":"gh","ف":"f","ق":"q","ك":"k","ل":"l","م":"m","ن":"n","ه":"h","ة":"a","و":"w","ي":"y","ى":"a","ء":"'","ئ":"'","ؤ":"'"};
+const translitAr=w=>{let o="";for(const c of normAr(w))o+=MAPAR[c]??"";o=o.replace(/^'/,"");return o.charAt(0).toUpperCase()+o.slice(1);};
+// ---------- Análisis ----------
+function analizar(txt){
+  const ar=/[؀-ۿ]/.test(txt);
+  let t=txt.trim().split(/\s+/).filter(Boolean),out=[];
+  for(let i=0;i<t.length;i++){
+    let tok=t[i],matched=false;
+    // partículas sueltas
+    const pk=ar?PART_AR[tok.replace(/[إآ]/g,"ا")]||PART_AR[tok]:PART_LAT[tok.toLowerCase().replace(/-$/,"")];
+    if(pk&&i<t.length-1){out.push({tipo:"part",k:pk,orig:tok});continue;}
+    // artículo pegado: al-Nasser, el-Hassan, الحسن
+    let art=false,base=tok;
+    if(!ar){const m=tok.match(/^(al|el|ul|a[tdrzsnl]|ash|ath|adh)[-’']/i);if(m){art=true;base=tok.slice(m[0].length);}}
+    else if(normAr(tok).startsWith("ال")&&normAr(tok).length>3&&IDXAR[normAr(tok).slice(2)]!==undefined){art=true;base=normAr(tok).slice(2);}
+    // compuestos de hasta 3 palabras (Abd al Rahman, عبد الرحمن)
+    for(let len=3;len>=1&&!matched;len--){
+      if(art&&len>1)continue;
+      const seg=(len===1?[base]:t.slice(i,i+len));if(seg.length<len)continue;
+      const k=ar?normAr(seg.join("")):norm(seg.join(""));
+      const idx=ar?IDXAR[k]:IDX[k];
+      if(idx!==undefined){if(art)out.push({tipo:"part",k:"al",orig:"al",pegado:true});out.push({tipo:"nombre",i:idx,orig:seg.join(" ")});i+=len-1;matched=true;}
+    }
+    if(!matched){
+      if(art)out.push({tipo:"part",k:"al",orig:"al",pegado:true});
+      out.push({tipo:"desconocido",orig:base,lat:ar?translitAr(base):base,ar:ar?base:""});
+    }
+  }
+  return out;
+}
+function opciones(c,sig){
+  if(c.tipo==="nombre")return N[c.i][3].filter(v=>!["Md","Mohd"].includes(v)||true);
+  if(c.tipo==="desconocido")return variantesRegla(c.lat);
+  const p=PART[c.k];
+  if(c.k==="al"&&sig){const f=(sig[0]||"").toLowerCase();const s2=(sig||"").slice(0,2).toLowerCase();const dig=["sh","th","dh"].includes(s2)?s2:f;const extra=SOLAR.includes(f)&&f?["a"+dig+"-"]:[];return [...p.v,...extra];}
+  return p.v;
+}
+function combinar(comps){
+  let res=[""];
+  comps.forEach((c,ix)=>{
+    const sigOps=comps[ix+1]?opciones(comps[ix+1]):[];
+    const ops=opciones(c,sigOps[0]);
+    const nuevo=[];
+    for(const r of res)for(const o of ops){
+      const pegar=c.tipo==="part"&&c.k==="al";
+      nuevo.push(r+(r&&!r.endsWith("-")&&!r.endsWith(" ")?" ":"")+(pegar?o.replace(/ $/,""):o)+(pegar&&o.endsWith(" ")?" ":""));
+      if(nuevo.length>2000)break;
+    }
+    res=nuevo.map(s=>s.replace(/\s+/g," "));
+  });
+  return [...new Set(res.map(s=>s.trim().replace(/(al|el|Al|El)(?=[A-Z])/g,"$1")))].slice(0,600);
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function pintar(){
+  const txt=document.getElementById("entrada").value;const R=document.getElementById("res");
+  if(!txt.trim()){R.innerHTML="";return;}
+  const comps=analizar(txt);
+  const lectura=comps.map(c=>c.tipo==="nombre"?`<b>${esc(N[c.i][3][0])}</b> (${esc(N[c.i][1])})`:c.tipo==="part"?(c.k==="al"?`<i>de la familia</i>`:`<i>${esc(PART[c.k].es)}</i>`):`<b>${esc(c.lat)}</b> (significado no disponible)`).join(" ");
+  const filas=comps.map(c=>{
+    if(c.tipo==="nombre"){const e=N[c.i];return `<tr><td><b>${esc(e[3][0])}</b></td><td class="ar">${e[0]}</td><td>${esc(e[1])}</td><td>${esc(e[2])}</td><td>${e[3].length}</td></tr>`;}
+    if(c.tipo==="part"){const p=PART[c.k];return `<tr><td><b>${esc(c.orig)}</b> <span class="nota">partícula</span></td><td class="ar">${p.ar}</td><td>${esc(p.es)}</td><td>${esc(p.pr)}</td><td>${p.v.length}</td></tr>`;}
+    return `<tr><td><b>${esc(c.lat)}</b></td><td class="ar">${esc(c.ar)}</td><td colspan="2"><span class="nota">No está en el diccionario: variantes generadas por reglas de transliteración${c.ar?" (sin vocales, aproximada)":""}.</span></td><td>${variantesRegla(c.lat).length}</td></tr>`;
+  }).join("");
+  const V=combinar(comps);
+  const consulta=V.slice(0,30).map(v=>`"${v}"`).join(" OR ");
+  R.innerHTML=`<div class="panel"><h3 style="margin-top:0">Qué significa</h3><p class="lectura">${lectura}</p></div>
+  <div class="panel"><h3 style="margin-top:0">Desglose</h3><table><tr><th>Componente</th><th>Árabe</th><th>Significado</th><th>Pronunciación</th><th>Formas</th></tr>${filas}</table></div>
+  <div class="panel"><h3 style="margin-top:0">${V.length} formas de escribirlo</h3>
+  ${comps.some(c=>c.tipo==="desconocido")?'<p class="aviso">Parte del nombre no está en el diccionario. Revisa las variantes generadas por reglas: algunas pueden no usarse en la práctica.</p>':""}
+  <div class="acc"><button class="btn p" id="c1">Copiar lista</button><button class="btn" id="c2">Copiar consulta de búsqueda</button><button class="btn" id="c3">Descargar CSV</button></div>
+  <div class="vars">${V.map(v=>`<div>${esc(v)}</div>`).join("")}</div>
+  <p style="margin:14px 0 4px"><b>Consulta para buscadores y bases de datos</b> <span class="nota">(primeras 30 formas)</span></p><textarea readonly>${esc(consulta)}</textarea></div>`;
+  document.getElementById("c1").onclick=()=>navigator.clipboard?.writeText(V.join("\n"));
+  document.getElementById("c2").onclick=()=>navigator.clipboard?.writeText(consulta);
+  document.getElementById("c3").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["variante\n"+V.join("\n")],{type:"text/csv"}));a.download="variantes.csv";a.click();};
+}
+document.getElementById("entrada").oninput=pintar;
+document.querySelectorAll(".ej button").forEach(b=>b.onclick=()=>{document.getElementById("entrada").value=b.textContent;pintar();});
+</script>
+</body>
+</html>

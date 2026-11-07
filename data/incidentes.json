@@ -1,0 +1,157 @@
+{
+  "aviso": "DATOS FICTICIOS DE DEMOSTRACIÓN. Ningún buque, fecha ni fuente corresponde a hechos reales.",
+  "actualizado": "2026-11-07",
+  "incidentes": [
+    {
+      "id": "D-001", "fecha_reivindicacion": "2025-01-14", "fecha_incidente": "2025-01-13",
+      "buque": "Buque ficticio A", "tipo": "portacontenedores", "bandera": "Liberia", "vinculo": "israel",
+      "zona": "mar_rojo_sur", "lat": 14.6, "lon": 42.2,
+      "reivindicacion_ar": "أعلنت القوات استهداف السفينة (أ) في البحر الأحمر بصاروخ.",
+      "reivindicacion_es": "Las fuerzas anuncian haber alcanzado el buque A en el Mar Rojo con un misil.",
+      "estado": "confirmado", "danos": "Impacto en cubierta, sin víctimas",
+      "fuentes": [
+        {"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1},
+        {"nombre": "Imagen de satélite (ejemplo)", "fiabilidad": "A", "credibilidad": 2}
+      ],
+      "notas": "Posición del buque coherente con la reivindicación."
+    },
+    {
+      "id": "D-002", "fecha_reivindicacion": "2025-02-03", "fecha_incidente": null,
+      "buque": "Buque ficticio B", "tipo": "petrolero", "bandera": "Panamá", "vinculo": "eeuu",
+      "zona": "golfo_aden", "lat": 12.9, "lon": 46.4,
+      "reivindicacion_ar": "أعلنت القوات استهداف ناقلة النفط (ب) في خليج عدن.",
+      "reivindicacion_es": "Las fuerzas anuncian haber alcanzado el petrolero B en el golfo de Adén.",
+      "estado": "falso", "danos": "Ninguno",
+      "fuentes": [
+        {"nombre": "Datos de posición AIS (ejemplo)", "fiabilidad": "B", "credibilidad": 2},
+        {"nombre": "Declaración de la naviera (ejemplo)", "fiabilidad": "C", "credibilidad": 2}
+      ],
+      "notas": "El buque estaba atracado a más de 900 km en la fecha anunciada."
+    },
+    {
+      "id": "D-003", "fecha_reivindicacion": "2025-03-21", "fecha_incidente": "2025-03-20",
+      "buque": "Buque ficticio C", "tipo": "granelero", "bandera": "Islas Marshall", "vinculo": "reino_unido",
+      "zona": "bab_al_mandeb", "lat": 12.7, "lon": 43.3,
+      "reivindicacion_ar": "أعلنت القوات إصابة السفينة (ج) إصابة مباشرة وإغراقها.",
+      "reivindicacion_es": "Las fuerzas anuncian un impacto directo y el hundimiento del buque C.",
+      "estado": "exagerado", "danos": "Explosión cercana, daños menores; no se hundió",
+      "fuentes": [
+        {"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1},
+        {"nombre": "Prensa marítima (ejemplo)", "fiabilidad": "B", "credibilidad": 2}
+      ],
+      "notas": "Hubo incidente, pero el buque siguió navegando."
+    },
+    {
+      "id": "D-004", "fecha_reivindicacion": "2025-05-08", "fecha_incidente": null,
+      "buque": "Buque ficticio D", "tipo": "portacontenedores", "bandera": "Malta", "vinculo": "ninguno",
+      "zona": "mar_rojo_sur", "lat": 15.4, "lon": 41.9,
+      "reivindicacion_ar": "أعلنت القوات استهداف السفينة (د) بطائرة مسيرة.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque D con un dron.",
+      "estado": "no_verificable", "danos": "Desconocidos",
+      "fuentes": [
+        {"nombre": "Canal de agregación OSINT (ejemplo)", "fiabilidad": "E", "credibilidad": 4}
+      ],
+      "notas": "Sin aviso oficial ni imagen; AIS apagado en la zona."
+    },
+    {
+      "id": "D-005", "fecha_reivindicacion": "2025-06-17", "fecha_incidente": "2025-06-16",
+      "buque": "Buque ficticio E", "tipo": "petrolero", "bandera": "Grecia", "vinculo": "israel",
+      "zona": "mar_rojo_sur", "lat": 14.1, "lon": 42.7,
+      "reivindicacion_ar": "أعلنت القوات استهداف ناقلة (هـ) مرتبطة بالكيان.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero E, al que vinculan con Israel.",
+      "estado": "confirmado", "danos": "Incendio controlado",
+      "fuentes": [
+        {"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1},
+        {"nombre": "Operación naval europea (ejemplo)", "fiabilidad": "A", "credibilidad": 1}
+      ],
+      "notas": ""
+    },
+    {
+      "id": "D-006", "fecha_reivindicacion": "2025-08-02", "fecha_incidente": null,
+      "buque": "Buque ficticio F", "tipo": "granelero", "bandera": "Liberia", "vinculo": "ninguno",
+      "zona": "golfo_aden", "lat": 13.3, "lon": 48.1,
+      "reivindicacion_ar": "أعلنت القوات استهداف السفينة (و) في خليج عدن.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque F en el golfo de Adén.",
+      "estado": "falso", "danos": "Ninguno",
+      "fuentes": [
+        {"nombre": "Datos de posición AIS (ejemplo)", "fiabilidad": "B", "credibilidad": 2}
+      ],
+      "notas": "Nombre del buque no coincide con ningún registro."
+    },
+    {
+      "id": "D-007", "fecha_reivindicacion": "2026-03-04", "fecha_incidente": "2026-03-03",
+      "buque": "Buque ficticio G", "tipo": "portacontenedores", "bandera": "Singapur", "vinculo": "eeuu",
+      "zona": "bab_al_mandeb", "lat": 12.5, "lon": 43.5,
+      "reivindicacion_ar": "أعلنت القوات استهداف السفينة (ز) في باب المندب.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque G en Bab al-Mandeb.",
+      "estado": "confirmado", "danos": "Daños en el puente",
+      "fuentes": [
+        {"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1}
+      ],
+      "notas": ""
+    },
+    {
+      "id": "D-008", "fecha_reivindicacion": "2026-03-19", "fecha_incidente": null,
+      "buque": "Buque ficticio H", "tipo": "petrolero", "bandera": "Islas Marshall", "vinculo": "reino_unido",
+      "zona": "mar_rojo_sur", "lat": 16.2, "lon": 41.6,
+      "reivindicacion_ar": "أعلنت القوات استهداف ناقلة (ح) بعدة صواريخ.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero H con varios misiles.",
+      "estado": "exagerado", "danos": "Misiles caídos al agua cerca del buque",
+      "fuentes": [
+        {"nombre": "Operación naval europea (ejemplo)", "fiabilidad": "A", "credibilidad": 2},
+        {"nombre": "Prensa regional (ejemplo)", "fiabilidad": "C", "credibilidad": 3}
+      ],
+      "notas": ""
+    },
+    {
+      "id": "D-009", "fecha_reivindicacion": "2026-07-23", "fecha_incidente": "2026-07-22",
+      "buque": "Buque ficticio I", "tipo": "petrolero", "bandera": "Arabia Saudí", "vinculo": "arabia_saudi",
+      "zona": "mar_rojo_norte", "lat": 23.9, "lon": 37.9,
+      "reivindicacion_ar": "أعلنت القوات استهداف ناقلة نفط (ط) قرب ينبع.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero I cerca de Yanbu.",
+      "estado": "confirmado", "danos": "Incendio a bordo",
+      "fuentes": [
+        {"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 1},
+        {"nombre": "Imagen de satélite (ejemplo)", "fiabilidad": "A", "credibilidad": 2}
+      ],
+      "notas": "Primer ataque de la serie en el norte del Mar Rojo."
+    },
+    {
+      "id": "D-010", "fecha_reivindicacion": "2026-07-29", "fecha_incidente": null,
+      "buque": "Buque ficticio J", "tipo": "granelero", "bandera": "Arabia Saudí", "vinculo": "arabia_saudi",
+      "zona": "mar_rojo_sur", "lat": 16.9, "lon": 41.9,
+      "reivindicacion_ar": "أعلنت القوات استهداف السفينة (ي) قبالة جازان.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque J frente a Jazán.",
+      "estado": "no_verificable", "danos": "Desconocidos",
+      "fuentes": [
+        {"nombre": "Prensa regional (ejemplo)", "fiabilidad": "C", "credibilidad": 4}
+      ],
+      "notas": ""
+    },
+    {
+      "id": "D-011", "fecha_reivindicacion": "2026-08-05", "fecha_incidente": "2026-08-05",
+      "buque": "Buque ficticio K", "tipo": "petrolero", "bandera": "Arabia Saudí", "vinculo": "arabia_saudi",
+      "zona": "mar_rojo_norte", "lat": 24.2, "lon": 37.6,
+      "reivindicacion_ar": "أعلنت القوات استهداف ناقلة (ك) بصاروخ باليستي.",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el petrolero K con un misil balístico.",
+      "estado": "exagerado", "danos": "Daños leves",
+      "fuentes": [
+        {"nombre": "Aviso de seguridad marítima (ejemplo)", "fiabilidad": "A", "credibilidad": 2}
+      ],
+      "notas": "El tipo de arma no se puede confirmar."
+    },
+    {
+      "id": "D-012", "fecha_reivindicacion": "2026-09-12", "fecha_incidente": null,
+      "buque": "Buque ficticio L", "tipo": "portacontenedores", "bandera": "Hong Kong", "vinculo": "ninguno",
+      "zona": "golfo_aden", "lat": 12.2, "lon": 45.2,
+      "reivindicacion_ar": "أعلنت القوات استهداف السفينة (ل).",
+      "reivindicacion_es": "Las fuerzas anuncian haber atacado el buque L.",
+      "estado": "falso", "danos": "Ninguno",
+      "fuentes": [
+        {"nombre": "Datos de posición AIS (ejemplo)", "fiabilidad": "B", "credibilidad": 2},
+        {"nombre": "Declaración de la naviera (ejemplo)", "fiabilidad": "C", "credibilidad": 2}
+      ],
+      "notas": ""
+    }
+  ]
+}

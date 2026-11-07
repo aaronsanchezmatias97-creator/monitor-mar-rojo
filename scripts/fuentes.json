@@ -1,0 +1,12 @@
+{
+  "nota": "Canales RSS que revisa el recolector cada día. Comprueba que cada dirección sigue funcionando y añade o quita fuentes según necesites. No añadas canales de grupos armados.",
+  "fuentes": [
+    {"nombre": "gCaptain", "url": "https://gcaptain.com/feed/"},
+    {"nombre": "Al Jazeera English", "url": "https://www.aljazeera.com/xml/rss/all.xml"},
+    {"nombre": "BBC Arabic", "url": "https://feeds.bbci.co.uk/arabic/rss.xml"}
+  ],
+  "palabras_clave": [
+    "houthi", "red sea", "bab el-mandeb", "bab al-mandab", "bab-el-mandeb", "gulf of aden", "ukmto", "hodeidah", "yanbu",
+    "الحوثي", "البحر الأحمر", "باب المندب", "خليج عدن"
+  ]
+}

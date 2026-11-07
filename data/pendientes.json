@@ -1,0 +1,9 @@
+{
+  "aviso": "Ejemplos ficticios. En la versión real, este archivo lo rellena cada día el recolector automático (scripts/recolectar.py).",
+  "actualizado": "2026-11-07T06:00:00Z",
+  "pendientes": [
+    {"id": "P-ejemplo-1", "fecha": "2026-11-06", "fuente": "Prensa marítima (ejemplo)", "titulo": "Buque informa de una explosión cerca de su posición al oeste de Hodeida", "enlace": ""},
+    {"id": "P-ejemplo-2", "fecha": "2026-11-05", "fuente": "Aviso de seguridad marítima (ejemplo)", "titulo": "Aviso: actividad sospechosa de embarcaciones pequeñas en Bab al-Mandeb", "enlace": ""},
+    {"id": "P-ejemplo-3", "fecha": "2026-11-05", "fuente": "Prensa regional en árabe (ejemplo)", "titulo": "الحوثيون يعلنون استهداف سفينة في البحر الأحمر", "enlace": ""}
+  ]
+}

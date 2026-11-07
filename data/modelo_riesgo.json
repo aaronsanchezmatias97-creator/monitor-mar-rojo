@@ -1,0 +1,41 @@
+{
+  "aviso": "Pesos provisionales para la demostración. En el TFM se calibrarán con los incidentes verificados.",
+  "factores": {
+    "vinculo": {
+      "etiqueta": "Vínculo comercial del buque",
+      "opciones": {
+        "israel": {"texto": "Israel", "peso": 3.0},
+        "eeuu": {"texto": "Estados Unidos", "peso": 2.5},
+        "arabia_saudi": {"texto": "Arabia Saudí", "peso": 2.5},
+        "reino_unido": {"texto": "Reino Unido", "peso": 2.0},
+        "ninguno": {"texto": "Ninguno conocido", "peso": 0.0}
+      }
+    },
+    "zona": {
+      "etiqueta": "Zona de tránsito",
+      "opciones": {
+        "bab_al_mandeb": {"texto": "Bab al-Mandeb", "peso": 2.5},
+        "mar_rojo_sur": {"texto": "Mar Rojo sur", "peso": 2.0},
+        "golfo_aden": {"texto": "Golfo de Adén", "peso": 1.5},
+        "mar_rojo_norte": {"texto": "Mar Rojo norte", "peso": 1.0}
+      }
+    },
+    "tipo": {
+      "etiqueta": "Tipo de buque",
+      "opciones": {
+        "petrolero": {"texto": "Petrolero", "peso": 1.5},
+        "portacontenedores": {"texto": "Portacontenedores", "peso": 1.0},
+        "granelero": {"texto": "Granelero", "peso": 1.0},
+        "otro": {"texto": "Otro", "peso": 0.5}
+      }
+    },
+    "escalas": {
+      "etiqueta": "Escalas recientes en puertos israelíes",
+      "opciones": {
+        "si": {"texto": "Sí", "peso": 2.0},
+        "no": {"texto": "No", "peso": 0.0}
+      }
+    }
+  },
+  "umbrales": {"medio": 3.5, "alto": 6.0}
+}
