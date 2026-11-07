@@ -9,11 +9,12 @@ Verifica con fuentes abiertas los ataques a buques reivindicados por los hutíes
 
 | Archivo | Qué es |
 | --- | --- |
-| `index.html` | El Monitor: mapa, fichas de cada incidente, estadísticas, calculadora de riesgo y lista de pendientes |
+| `index.html` | El Monitor: mapa, fichas de cada incidente, gráfico de credibilidad por trimestre, calculadora de riesgo, informe para cliente (imprimible en PDF), pendientes y versión en inglés (botón EN) |
 | `nombres.html` | Generador de variantes de nombres árabes, con significado y pronunciación |
 | `data/incidentes.json` | Incidentes verificados (lo mantiene el analista) |
 | `data/pendientes.json` | Lo que recoge el recolector cada día, pendiente de verificar |
 | `data/modelo_riesgo.json` | Pesos de la calculadora de riesgo (provisionales) |
+| `data/mapa_base.json` | Costas y fronteras de la región (Natural Earth); el mapa no depende de servicios externos |
 | `scripts/recolectar.py` | Recolector automático (Python, sin dependencias) |
 | `scripts/fuentes.json` | Fuentes RSS y palabras clave del recolector |
 | `.github/workflows/actualizar.yml` | Ejecuta el recolector cada día en GitHub |

@@ -4,38 +4,106 @@
     "vinculo": {
       "etiqueta": "Vínculo comercial del buque",
       "opciones": {
-        "israel": {"texto": "Israel", "peso": 3.0},
-        "eeuu": {"texto": "Estados Unidos", "peso": 2.5},
-        "arabia_saudi": {"texto": "Arabia Saudí", "peso": 2.5},
-        "reino_unido": {"texto": "Reino Unido", "peso": 2.0},
-        "ninguno": {"texto": "Ninguno conocido", "peso": 0.0}
-      }
+        "israel": {
+          "texto": "Israel",
+          "peso": 3.0,
+          "texto_en": "Israel"
+        },
+        "eeuu": {
+          "texto": "Estados Unidos",
+          "peso": 2.5,
+          "texto_en": "United States"
+        },
+        "arabia_saudi": {
+          "texto": "Arabia Saudí",
+          "peso": 2.5,
+          "texto_en": "Saudi Arabia"
+        },
+        "reino_unido": {
+          "texto": "Reino Unido",
+          "peso": 2.0,
+          "texto_en": "United Kingdom"
+        },
+        "ninguno": {
+          "texto": "Ninguno conocido",
+          "peso": 0.0,
+          "texto_en": "None known"
+        }
+      },
+      "etiqueta_en": "Vessel's commercial link"
     },
     "zona": {
       "etiqueta": "Zona de tránsito",
       "opciones": {
-        "bab_al_mandeb": {"texto": "Bab al-Mandeb", "peso": 2.5},
-        "mar_rojo_sur": {"texto": "Mar Rojo sur", "peso": 2.0},
-        "golfo_aden": {"texto": "Golfo de Adén", "peso": 1.5},
-        "mar_rojo_norte": {"texto": "Mar Rojo norte", "peso": 1.0}
-      }
+        "bab_al_mandeb": {
+          "texto": "Bab al-Mandeb",
+          "peso": 2.5,
+          "texto_en": "Bab al-Mandeb"
+        },
+        "mar_rojo_sur": {
+          "texto": "Mar Rojo sur",
+          "peso": 2.0,
+          "texto_en": "Southern Red Sea"
+        },
+        "golfo_aden": {
+          "texto": "Golfo de Adén",
+          "peso": 1.5,
+          "texto_en": "Gulf of Aden"
+        },
+        "mar_rojo_norte": {
+          "texto": "Mar Rojo norte",
+          "peso": 1.0,
+          "texto_en": "Northern Red Sea"
+        }
+      },
+      "etiqueta_en": "Transit area"
     },
     "tipo": {
       "etiqueta": "Tipo de buque",
       "opciones": {
-        "petrolero": {"texto": "Petrolero", "peso": 1.5},
-        "portacontenedores": {"texto": "Portacontenedores", "peso": 1.0},
-        "granelero": {"texto": "Granelero", "peso": 1.0},
-        "otro": {"texto": "Otro", "peso": 0.5}
-      }
+        "petrolero": {
+          "texto": "Petrolero",
+          "peso": 1.5,
+          "texto_en": "Tanker"
+        },
+        "portacontenedores": {
+          "texto": "Portacontenedores",
+          "peso": 1.0,
+          "texto_en": "Container ship"
+        },
+        "granelero": {
+          "texto": "Granelero",
+          "peso": 1.0,
+          "texto_en": "Bulk carrier"
+        },
+        "otro": {
+          "texto": "Otro",
+          "peso": 0.5,
+          "texto_en": "Other"
+        }
+      },
+      "etiqueta_en": "Vessel type"
     },
     "escalas": {
       "etiqueta": "Escalas recientes en puertos israelíes",
       "opciones": {
-        "si": {"texto": "Sí", "peso": 2.0},
-        "no": {"texto": "No", "peso": 0.0}
-      }
+        "si": {
+          "texto": "Sí",
+          "peso": 2.0,
+          "texto_en": "Yes"
+        },
+        "no": {
+          "texto": "No",
+          "peso": 0.0,
+          "texto_en": "No"
+        }
+      },
+      "etiqueta_en": "Recent calls at Israeli ports"
     }
   },
-  "umbrales": {"medio": 3.5, "alto": 6.0}
+  "umbrales": {
+    "medio": 3.5,
+    "alto": 6.0
+  },
+  "aviso_en": "Provisional weights for the demonstration. In the thesis they will be calibrated with the verified incidents."
 }
