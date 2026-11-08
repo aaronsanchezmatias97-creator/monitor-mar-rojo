@@ -1,9 +1,13 @@
 {
-  "aviso": "Ejemplos ficticios. En la versión real, este archivo lo rellena cada día el recolector automático (scripts/recolectar.py).",
-  "actualizado": "2026-11-07T06:00:00Z",
+  "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
+  "actualizado": "2026-11-08T11:58:56Z",
   "pendientes": [
-    {"id": "P-ejemplo-1", "fecha": "2026-11-06", "fuente": "Prensa marítima (ejemplo)", "titulo": "Buque informa de una explosión cerca de su posición al oeste de Hodeida", "enlace": ""},
-    {"id": "P-ejemplo-2", "fecha": "2026-11-05", "fuente": "Aviso de seguridad marítima (ejemplo)", "titulo": "Aviso: actividad sospechosa de embarcaciones pequeñas en Bab al-Mandeb", "enlace": ""},
-    {"id": "P-ejemplo-3", "fecha": "2026-11-05", "fuente": "Prensa regional en árabe (ejemplo)", "titulo": "الحوثيون يعلنون استهداف سفينة في البحر الأحمر", "enlace": ""}
+    {
+      "id": "cd1811b3a548",
+      "fecha": "2026-11-08",
+      "fuente": "BBC Arabic",
+      "titulo": "دوي انفجارات في الرياض، والتحالف يعلن اعتراض صواريخ باليستية وكروز أطلقها الحوثيون",
+      "enlace": "https://www.bbc.com/arabic/articles/c6kg5ryrzp17o?at_medium=RSS&at_campaign=rss"
+    }
   ]
 }
