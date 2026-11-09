@@ -1,7 +1,14 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-08T11:58:56Z",
+  "actualizado": "2026-11-09T13:59:03Z",
   "pendientes": [
+    {
+      "id": "73acf381ec21",
+      "fecha": "2026-11-09",
+      "fuente": "Al Jazeera English",
+      "titulo": "Syria confirms sending troops to Saudi Arabia amid battle against Houthis",
+      "enlace": "https://www.aljazeera.com/features/2026/11/9/syria-confirms-sending-troops-to-saudi-arabia-amid-battle-against-houthis?traffic_source=rss"
+    },
     {
       "id": "cd1811b3a548",
       "fecha": "2026-11-08",
