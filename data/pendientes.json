@@ -1,13 +1,27 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-09T13:59:03Z",
+  "actualizado": "2026-11-10T13:33:45Z",
   "pendientes": [
+    {
+      "id": "3b4dfd5bb508",
+      "fecha": "2026-11-10",
+      "fuente": "BBC Arabic",
+      "titulo": "التحالف يعترض صاروخين نحو الرياض، و\"غارات سعودية\" على صنعاء",
+      "enlace": "https://www.bbc.com/arabic/articles/crwydyx4ww2wo?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "73acf381ec21",
       "fecha": "2026-11-09",
       "fuente": "Al Jazeera English",
       "titulo": "Syria confirms sending troops to Saudi Arabia amid battle against Houthis",
       "enlace": "https://www.aljazeera.com/features/2026/11/9/syria-confirms-sending-troops-to-saudi-arabia-amid-battle-against-houthis?traffic_source=rss"
+    },
+    {
+      "id": "8da92543b251",
+      "fecha": "2026-11-09",
+      "fuente": "gCaptain",
+      "titulo": "IMO Warns of Mounting Human Toll as Attacks on Commercial Shipping Continue",
+      "enlace": "https://gcaptain.com/imo-warns-of-mounting-human-toll-as-attacks-on-commercial-shipping-continue/"
     },
     {
       "id": "cd1811b3a548",
