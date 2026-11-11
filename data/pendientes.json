@@ -1,13 +1,27 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-10T13:33:45Z",
+  "actualizado": "2026-11-11T12:46:39Z",
   "pendientes": [
+    {
+      "id": "8e81e3b89390",
+      "fecha": "2026-11-11",
+      "fuente": "Al Jazeera English",
+      "titulo": "US embassy refutes Houthis’ Yemen blockade claims, highlights siege on Taiz",
+      "enlace": "https://www.aljazeera.com/news/2026/11/11/us-embassy-refutes-houthis-yemen-blockade-claims-highlights-siege-on-taiz?traffic_source=rss"
+    },
     {
       "id": "3b4dfd5bb508",
       "fecha": "2026-11-10",
       "fuente": "BBC Arabic",
       "titulo": "التحالف يعترض صاروخين نحو الرياض، و\"غارات سعودية\" على صنعاء",
       "enlace": "https://www.bbc.com/arabic/articles/crwydyx4ww2wo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "f32f5e051979",
+      "fecha": "2026-11-10",
+      "fuente": "gCaptain",
+      "titulo": "ADNOC Vessel Damaged in Gulf Attack as UKMTO Reports Fresh Tanker Strike Near Hormuz",
+      "enlace": "https://gcaptain.com/adnoc-vessel-damaged-in-gulf-attack-as-ukmto-reports-fresh-tanker-strike-near-hormuz/"
     },
     {
       "id": "73acf381ec21",
