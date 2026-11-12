@@ -1,7 +1,14 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-11T12:46:39Z",
+  "actualizado": "2026-11-12T13:50:03Z",
   "pendientes": [
+    {
+      "id": "66e8633a0ece",
+      "fecha": "2026-11-12",
+      "fuente": "BBC Arabic",
+      "titulo": "السعودية تعلن اعتراض مُسيرة في الرياض، وسقوط شظايا صاروخين باليستيين أطلقهما الحوثيون باتجاه منطقة مكة المكرمة",
+      "enlace": "https://www.bbc.com/arabic/articles/crgj3vw6jq4xo?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "8e81e3b89390",
       "fecha": "2026-11-11",
