@@ -1,7 +1,21 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-13T13:12:17Z",
+  "actualizado": "2026-11-14T12:16:17Z",
   "pendientes": [
+    {
+      "id": "7731ffe8a602",
+      "fecha": "2026-11-13",
+      "fuente": "gCaptain",
+      "titulo": "Hapag-Lloyd Profit Surges as Freight Rates Rise, Red Sea Services Return",
+      "enlace": "https://gcaptain.com/hapag-lloyd-profit-surges-as-freight-rates-rise-red-sea-services-return/"
+    },
+    {
+      "id": "28095e6f7f5a",
+      "fecha": "2026-11-13",
+      "fuente": "BBC Arabic",
+      "titulo": "إثيوبيا والبحر الأحمر.. ما سر \"عقدة\" المنفذ البحري؟",
+      "enlace": "https://www.bbc.com/arabic/watch/cwdd14grly09o?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "66e8633a0ece",
       "fecha": "2026-11-12",
