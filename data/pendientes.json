@@ -1,7 +1,14 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-15T12:48:56Z",
+  "actualizado": "2026-11-16T13:44:57Z",
   "pendientes": [
+    {
+      "id": "f69249200eb8",
+      "fecha": "2026-11-16",
+      "fuente": "BBC Arabic",
+      "titulo": "القوات اليمنية تنسحب من باب المندب لـ\"الدفاع\" عن عدن مع تقدّم الحوثيين نحو المدينة",
+      "enlace": "https://www.bbc.com/arabic/articles/cm0rknqx2yyko?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "7731ffe8a602",
       "fecha": "2026-11-13",
