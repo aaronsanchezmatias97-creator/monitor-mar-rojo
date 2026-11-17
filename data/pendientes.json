@@ -1,6 +1,6 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-16T13:44:57Z",
+  "actualizado": "2026-11-17T14:34:22Z",
   "pendientes": [
     {
       "id": "f69249200eb8",
@@ -8,6 +8,20 @@
       "fuente": "BBC Arabic",
       "titulo": "القوات اليمنية تنسحب من باب المندب لـ\"الدفاع\" عن عدن مع تقدّم الحوثيين نحو المدينة",
       "enlace": "https://www.bbc.com/arabic/articles/cm0rknqx2yyko?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "ad1c296a9579",
+      "fecha": "2026-11-16",
+      "fuente": "gCaptain",
+      "titulo": "UKMTO Reports Two Tanker Attacks in Strait of Hormuz",
+      "enlace": "https://gcaptain.com/ukmto-reports-two-tanker-attacks-in-strait-of-hormuz/"
+    },
+    {
+      "id": "aaeeda04e66d",
+      "fecha": "2026-11-16",
+      "fuente": "gCaptain",
+      "titulo": "Maersk, Hapag-Lloyd Expand Suez Canal Return With Three More Gemini Services",
+      "enlace": "https://gcaptain.com/maersk-hapag-lloyd-expand-suez-canal-return-with-three-more-gemini-services/"
     },
     {
       "id": "7731ffe8a602",
