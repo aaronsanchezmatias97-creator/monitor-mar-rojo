@@ -1,7 +1,28 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-17T14:34:22Z",
+  "actualizado": "2026-11-18T14:10:44Z",
   "pendientes": [
+    {
+      "id": "c84a640608d2",
+      "fecha": "2026-11-18",
+      "fuente": "Al Jazeera English",
+      "titulo": "Saudi coalition hits 60 Houthi military sites; Taiz sees ‘fierce battles’",
+      "enlace": "https://www.aljazeera.com/news/2026/11/18/houthis-advance-on-aden-as-saudi-coalition-targets-military-sites?traffic_source=rss"
+    },
+    {
+      "id": "ee8b42a68e4b",
+      "fecha": "2026-11-18",
+      "fuente": "BBC Arabic",
+      "titulo": "الكويت والبحرين تعلنان التصدي لهجمات إيرانية جديدة",
+      "enlace": "https://www.bbc.com/arabic/articles/cq4gnp3zl3n0o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "51a2d28ec0b3",
+      "fecha": "2026-11-18",
+      "fuente": "BBC Arabic",
+      "titulo": "الحوثيون: كيف تحولت حركة صعدة المغمورة إلى صداع إقليمي ودولي؟",
+      "enlace": "https://www.bbc.com/arabic/articles/cwdd144g3jveo?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "f69249200eb8",
       "fecha": "2026-11-16",
