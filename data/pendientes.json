@@ -1,7 +1,14 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-18T14:10:44Z",
+  "actualizado": "2026-11-19T14:29:35Z",
   "pendientes": [
+    {
+      "id": "c38836769a39",
+      "fecha": "2026-11-19",
+      "fuente": "BBC Arabic",
+      "titulo": "التحالف يعلن عن أضرار مادية إثر هجوم صاروخي للحوثيين على الرياض",
+      "enlace": "https://www.bbc.com/arabic/articles/cq98x3geznjzo?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "c84a640608d2",
       "fecha": "2026-11-18",
