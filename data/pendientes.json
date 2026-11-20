@@ -1,7 +1,14 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-19T14:29:35Z",
+  "actualizado": "2026-11-20T14:06:29Z",
   "pendientes": [
+    {
+      "id": "7e1e75d80c33",
+      "fecha": "2026-11-20",
+      "fuente": "BBC Arabic",
+      "titulo": "الحوثيون يهددون موانئ السعودية والمركز المالي بالرياض رداً على تحذير التحالف بإخلاء ميناء الحديدة",
+      "enlace": "https://www.bbc.com/arabic/articles/cqy7rxexp1x0o?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "c38836769a39",
       "fecha": "2026-11-19",
