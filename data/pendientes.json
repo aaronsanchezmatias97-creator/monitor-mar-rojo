@@ -1,13 +1,27 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-20T14:06:29Z",
+  "actualizado": "2026-11-21T13:32:13Z",
   "pendientes": [
+    {
+      "id": "b164766bb256",
+      "fecha": "2026-11-21",
+      "fuente": "BBC Arabic",
+      "titulo": "السعودية تعلن اعتراض صواريخ باليستية جديدة أطلقها الحوثيون باتجاه الرياض",
+      "enlace": "https://www.bbc.com/arabic/articles/c63egv9y93k2o?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "7e1e75d80c33",
       "fecha": "2026-11-20",
       "fuente": "BBC Arabic",
       "titulo": "الحوثيون يهددون موانئ السعودية والمركز المالي بالرياض رداً على تحذير التحالف بإخلاء ميناء الحديدة",
       "enlace": "https://www.bbc.com/arabic/articles/cqy7rxexp1x0o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "f539d89d0019",
+      "fecha": "2026-11-20",
+      "fuente": "gCaptain",
+      "titulo": "Houthis Order Ships to Leave Saudi Red Sea Ports After Hodeidah Airstrikes",
+      "enlace": "https://gcaptain.com/houthis-order-ships-to-leave-saudi-red-sea-ports-after-hodeidah-airstrikes/"
     },
     {
       "id": "c38836769a39",
