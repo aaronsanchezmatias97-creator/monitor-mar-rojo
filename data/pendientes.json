@@ -1,7 +1,21 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-21T13:32:13Z",
+  "actualizado": "2026-11-22T13:25:39Z",
   "pendientes": [
+    {
+      "id": "d650da2c5e5f",
+      "fecha": "2026-11-22",
+      "fuente": "BBC Arabic",
+      "titulo": "السعودية تعلن اعتراض صاروخ حوثي وسط استمرار الغارات على اليمن",
+      "enlace": "https://www.bbc.com/arabic/articles/cq98x50lgr4jo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "e1edf6880ff0",
+      "fecha": "2026-11-22",
+      "fuente": "BBC Arabic",
+      "titulo": "المشروع الأضخم: هل يتمكّن الأردن من تحقيق استقلاله المائي؟",
+      "enlace": "https://www.bbc.com/arabic/articles/cqx2x0erk6n1o?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "b164766bb256",
       "fecha": "2026-11-21",
