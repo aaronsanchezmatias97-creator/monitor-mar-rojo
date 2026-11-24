@@ -1,7 +1,21 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-23T16:06:23Z",
+  "actualizado": "2026-11-24T15:57:33Z",
   "pendientes": [
+    {
+      "id": "b699081c766e",
+      "fecha": "2026-11-24",
+      "fuente": "Al Jazeera English",
+      "titulo": "UK sanctions Yemen’s Houthi group and four of its top officials",
+      "enlace": "https://www.aljazeera.com/news/2026/11/24/uk-sanctions-yemens-houthi-group-four-senior-officials?traffic_source=rss"
+    },
+    {
+      "id": "648bb5360c31",
+      "fecha": "2026-11-24",
+      "fuente": "BBC Arabic",
+      "titulo": "عقوبات بريطانية تستهدف جماعة الحوثي وأربعة من قادتها، وهجوم على أعلى ناطحة سحاب في الرياض",
+      "enlace": "https://www.bbc.com/arabic/articles/c6205xd02713o?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "d650da2c5e5f",
       "fecha": "2026-11-22",
