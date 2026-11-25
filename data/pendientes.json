@@ -1,7 +1,14 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-24T15:57:33Z",
+  "actualizado": "2026-11-25T15:44:15Z",
   "pendientes": [
+    {
+      "id": "211c2de6c61a",
+      "fecha": "2026-11-25",
+      "fuente": "BBC Arabic",
+      "titulo": "الحوثيون يعلنون استهداف مصفاة رأس تنورة والمركز المالي في الرياض، والسعودية تقصف ميناء الحُديدة",
+      "enlace": "https://www.bbc.com/arabic/articles/cwvg28p9emp0o?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "b699081c766e",
       "fecha": "2026-11-24",
