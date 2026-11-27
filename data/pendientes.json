@@ -1,7 +1,28 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-26T15:25:32Z",
+  "actualizado": "2026-11-27T15:12:08Z",
   "pendientes": [
+    {
+      "id": "a1d836995afa",
+      "fecha": "2026-11-27",
+      "fuente": "Al Jazeera English",
+      "titulo": "Saudi strike kills ’11 civilians’ in Yemen’s Taiz: Houthi media",
+      "enlace": "https://www.aljazeera.com/news/2026/11/27/saudi-strike-kills-11-civilians-in-yemens-taiz-houthi-media?traffic_source=rss"
+    },
+    {
+      "id": "9ec7f1759832",
+      "fecha": "2026-11-27",
+      "fuente": "BBC Arabic",
+      "titulo": "بي بي سي تتحدث إلى سعوديين: \"لن أسمح لهم بأن يشعروني بعدم الأمان في بلدي\"",
+      "enlace": "https://www.bbc.com/arabic/articles/cj3vg3dxz6r2o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "5f958da7636d",
+      "fecha": "2026-11-27",
+      "fuente": "BBC Arabic",
+      "titulo": "كيف تتسبب هجمات الحوثيين في فوضى عارمة في السعودية؟ - مقال في الإندبندنت",
+      "enlace": "https://www.bbc.com/arabic/articles/cr15el0nk085o?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "e47d5a36d07a",
       "fecha": "2026-11-26",
