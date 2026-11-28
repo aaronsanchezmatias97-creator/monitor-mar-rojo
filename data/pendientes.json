@@ -1,7 +1,35 @@
 {
   "aviso": "Recogido automáticamente. Pendiente de verificación por el analista.",
-  "actualizado": "2026-11-27T15:12:08Z",
+  "actualizado": "2026-11-28T14:17:29Z",
   "pendientes": [
+    {
+      "id": "3eb764b8cd39",
+      "fecha": "2026-11-28",
+      "fuente": "Al Jazeera English",
+      "titulo": "Yemen government forces hit Houthi positions as UN warns of hunger crisis",
+      "enlace": "https://www.aljazeera.com/news/2026/11/28/yemen-governmen-forces-hit-houthi-positions-as-un-warns-of-hunger-crisis?traffic_source=rss"
+    },
+    {
+      "id": "d5bebe911de7",
+      "fecha": "2026-11-28",
+      "fuente": "BBC Arabic",
+      "titulo": "ماذا يعني تقدّم الحوثيين بالنسبة لإيران والصراع الإقليمي؟",
+      "enlace": "https://www.bbc.com/arabic/articles/cmreg5qp1g93o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "abebe7f64ffd",
+      "fecha": "2026-11-28",
+      "fuente": "BBC Arabic",
+      "titulo": "اختطاف سفينة شحن قبالة سواحل اليمن، والسعودية تعلن اعتراض صاروخَين حوثيين باتجاه الرياض والجنوب",
+      "enlace": "https://www.bbc.com/arabic/articles/cwj057rlqd82o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "a2aeff5e462a",
+      "fecha": "2026-11-28",
+      "fuente": "BBC Arabic",
+      "titulo": "الهجمات الحوثية تلقي بظلالها على الاقتصاد السعودي - مقال في التلغراف",
+      "enlace": "https://www.bbc.com/arabic/articles/cqly461l0vlro?at_medium=RSS&at_campaign=rss"
+    },
     {
       "id": "a1d836995afa",
       "fecha": "2026-11-27",
@@ -22,6 +50,13 @@
       "fuente": "BBC Arabic",
       "titulo": "كيف تتسبب هجمات الحوثيين في فوضى عارمة في السعودية؟ - مقال في الإندبندنت",
       "enlace": "https://www.bbc.com/arabic/articles/cr15el0nk085o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "id": "cb79431962b9",
+      "fecha": "2026-11-27",
+      "fuente": "BBC Arabic",
+      "titulo": "النحاس في بلا قيود: السعودية آمنة تماما.",
+      "enlace": "https://www.bbc.com/arabic/watch/credqv7w67l5o?at_medium=RSS&at_campaign=rss"
     },
     {
       "id": "e47d5a36d07a",
